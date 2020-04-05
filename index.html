@@ -58,7 +58,7 @@
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
     const recoveredDisplay = document.getElementById('recovered')
-    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${hash}/slip-map/map-data-world.json`
+    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${window.nytBuildHash}/slip-map/map-data-world.json`
 
     function countTotals(data) {
         return new Promise(resolve => {
