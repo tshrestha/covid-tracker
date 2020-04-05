@@ -47,6 +47,7 @@
   </span>
     </nav>
 </div>
+<script src="hash.js"></script>
 <script>
     let cases = 0
     let deaths = 0
@@ -57,7 +58,7 @@
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
     const recoveredDisplay = document.getElementById('recovered')
-    const dataSource = 'https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/e95efa52fb9ddd807267621cf01df87d76830b75/slip-map/map-data-world.json'
+    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${hash}/slip-map/map-data-world.json`
 
     function countTotals(data) {
         return new Promise(resolve => {
