@@ -31,7 +31,7 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-        curl https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html?action=click&module=Top%20Stories&pgtype=Homepage -o nyt.html
+        curl "https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html?action=click&module=Top%20Stories&pgtype=Homepage" -o nyt.html
         grep "Pipeline: 2020-03-16-coronavirus-maps" nyt.html > hash.txt
         cat hash.txt
 
