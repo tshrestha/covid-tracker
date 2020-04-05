@@ -28,8 +28,14 @@ jobs:
         curl "https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html?action=click&module=Top%20Stories&pgtype=Homepage" -o nyt.html
         grep "Pipeline: 2020-03-16-coronavirus-maps" nyt.html > hash.txt
         node getHash.js
-        git add hash.js
-        git commit -a -m "Update hash."
-        git push
       env:
         CI: true
+    - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "hash.js" -a
+          - name: Push changes
+            uses: ad-m/github-push-action@master
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
