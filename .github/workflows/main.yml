@@ -35,4 +35,6 @@ jobs:
         grep "Pipeline: 2020-03-16-coronavirus-maps" nyt.html > hash.txt
         cat hash.txt
         ls
+        git status
+
 
