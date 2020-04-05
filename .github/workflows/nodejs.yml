@@ -24,7 +24,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
+      run: |
         curl "https://www.nytimes.com/interactive/2020/world/coronavirus-maps.html?action=click&module=Top%20Stories&pgtype=Homepage" -o nyt.html
         grep "Pipeline: 2020-03-16-coronavirus-maps" nyt.html > hash.txt
         node getHash.js
