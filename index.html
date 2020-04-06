@@ -49,12 +49,6 @@
 </div>
 <script src="hash.js"></script>
 <script>
-    let cases = 0
-    let deaths = 0
-    let recovered = 0
-    let deathRatio = 0
-    let recoveryRatio = 0
-
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
     const recoveredDisplay = document.getElementById('recovered')
@@ -62,22 +56,26 @@
 
     function countTotals(data) {
         return new Promise(resolve => {
+            let cases = 0
+            let deaths = 0
+            let recovered = 0
+
             data.forEach(d => {
                 cases += d.confirmed
                 deaths += d.deaths
                 recovered += d.recovered
             })
 
-            deathRatio = deaths / cases
-            recoveryRatio = recovered / cases
-            resolve()
+            const deathRatio = ((deaths / cases) * 100).toFixed(2)
+            const recoveryRatio = ((recovered / cases) * 100).toFixed(2)
+            resolve([cases, deaths, recovered, deathRatio, recoveryRatio])
         })
     }
 
-    function updateDom() {
-        casesDisplay.innerText = cases.toLocaleString()
-        deathsDisplay.innerHTML = `${deaths.toLocaleString()} <small class="text-muted">${(deathRatio * 100).toFixed(2)}%</small>`
-        recoveredDisplay.innerHTML = `${recovered.toLocaleString()} <small class="text-muted">${(recoveryRatio * 100).toFixed(2)}%</small>`
+    function updateDom(values) {
+        casesDisplay.innerText = values[0].toLocaleString()
+        deathsDisplay.innerHTML = `${values[1].toLocaleString()} <small class="text-muted">${values[3]}%</small>`
+        recoveredDisplay.innerHTML = `${values[2].toLocaleString()} <small class="text-muted">${values[4]}%</small>`
     }
 
     function updateData() {
