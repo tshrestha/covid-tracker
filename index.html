@@ -74,8 +74,8 @@
 
     function updateDom(values) {
         casesDisplay.innerText = values[0].toLocaleString()
-        deathsDisplay.innerHTML = `${values[1].toLocaleString()} <small class="text-muted">${values[3]}%</small>`
-        recoveredDisplay.innerHTML = `${values[2].toLocaleString()} <small class="text-muted">${values[4]}%</small>`
+        deathsDisplay.innerHTML = `${values[1].toLocaleString()}<br><small class="text-muted">${values[3]}%</small>`
+        recoveredDisplay.innerHTML = `${values[2].toLocaleString()}<br><small class="text-muted">${values[4]}%</small>`
     }
 
     function updateData() {
