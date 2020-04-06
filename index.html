@@ -42,9 +42,13 @@
 </div>
 <div class="container">
     <nav class="navbar navbar-dark bg-dark">
-  <span class="navbar-link">
-    <a target="_blank" href="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/e95efa52fb9ddd807267621cf01df87d76830b75/slip-map/map-data-world.json">Data source</a>
-  </span>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" target="_blank"
+               href="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/e95efa52fb9ddd807267621cf01df87d76830b75/slip-map/map-data-world.json">
+                Data source
+            </a>
+        </div>
+        <span class="navbar-text text-muted" id="utimestamp"></span>
     </nav>
 </div>
 <script src="hash.js"></script>
@@ -52,7 +56,8 @@
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
     const recoveredDisplay = document.getElementById('recovered')
-    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${window.nytBuildHash}/slip-map/map-data-world.json`
+    const utimestampDisplay = document.getElementById('utimestamp')
+    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/slip-map/map-data-world.json`
 
     function countTotals(data) {
         return new Promise(resolve => {
@@ -76,6 +81,7 @@
         casesDisplay.innerText = values[0].toLocaleString()
         deathsDisplay.innerHTML = `${values[1].toLocaleString()}<br><small class="text-muted">${values[3]}%</small>`
         recoveredDisplay.innerHTML = `${values[2].toLocaleString()}<br><small class="text-muted">${values[4]}%</small>`
+        utimestampDisplay.innerHTML = `<small>Updated ${updateTimestamp}</small>`
     }
 
     function updateData() {
