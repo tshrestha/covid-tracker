@@ -46,10 +46,7 @@
 <div class="container">
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" target="_blank"
-               href="https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/e95efa52fb9ddd807267621cf01df87d76830b75/slip-map/map-data-world.json">
-                Data source
-            </a>
+            <a class="nav-item nav-link" target="_blank" href="" id="data-source">Data source</a>
         </div>
         <span class="navbar-text text-muted" id="utimestamp"></span>
     </nav>
@@ -60,7 +57,10 @@
     const deathsDisplay = document.getElementById('deaths')
     // const recoveredDisplay = document.getElementById('recovered')
     const utimestampDisplay = document.getElementById('utimestamp')
+    const dataSourceDisplay = document.getElementById('data-source')
+
     const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/slip-map/map-data-world.json`
+    dataSourceDisplay.setAttribute('href', dataSource)
 
     function countTotals(data) {
         return new Promise(resolve => {
