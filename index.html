@@ -14,9 +14,6 @@
         <p class="lead">
             Tracking the global number of COVID-19 cases, deaths and recoveries.
         </p>
-        <p class="lead"><span id="numdays" class="font-italic font-weight-bold"></span> days have
-            passed since outbreak was declared a Public Health Emergency of International Concern
-        </p>
     </div>
 </div>
 <div class="container mb-4">
@@ -59,7 +56,7 @@
     const utimestampDisplay = document.getElementById('utimestamp')
     const dataSourceDisplay = document.getElementById('data-source')
 
-    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/slip-map/map-data-world.json`
+    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/data/timeseries/NYT-World.json`
     dataSourceDisplay.setAttribute('href', dataSource)
 
     function countTotals(data) {
@@ -68,9 +65,9 @@
             let deaths = 0
             // let recovered = 0
 
-            data.forEach(d => {
-                cases += d.confirmed
-                deaths += d.deaths
+            data.data.forEach(d => {
+                cases += d.all_cases.slice(-1)[0]
+                deaths += d.all_deaths.slice(-1)[0]
                 // recovered += d.recovered
             })
 
