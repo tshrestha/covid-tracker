@@ -24,14 +24,6 @@
         <div class="card-footer text-muted">Confirmed Cases</div>
     </div>
 </div>
-<!--<div class="container mb-4">-->
-<!--    <div class="card text-white bg-dark shadow text-center">-->
-<!--        <div class="card-body">-->
-<!--            <h1 class="card-title display-1" id="recovered">number</h1>-->
-<!--        </div>-->
-<!--        <div class="card-footer text-muted">Recovered</div>-->
-<!--    </div>-->
-<!--</div>-->
 <div class="container mb-5">
     <div class="card text-white bg-dark shadow text-center">
         <div class="card-body">
@@ -52,7 +44,6 @@
 <script>
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
-    // const recoveredDisplay = document.getElementById('recovered')
     const utimestampDisplay = document.getElementById('utimestamp')
     const dataSourceDisplay = document.getElementById('data-source')
 
@@ -61,18 +52,11 @@
 
     function countTotals(data) {
         return new Promise(resolve => {
-            let cases = 0
-            let deaths = 0
-            // let recovered = 0
-
-            data.data.forEach(d => {
-                cases += d.all_cases.slice(-1)[0]
-                deaths += d.all_deaths.slice(-1)[0]
-                // recovered += d.recovered
-            })
-
+            const nytall = data.data
+                .filter(d => d.geoid === 'NYT-World')[0]
+            const cases = nytall.all_cases.slice(-1)[0]
+            const deaths = nytall.all_deaths.slice(-1)[0]
             const deathRatio = ((deaths / cases) * 100).toFixed(2)
-            // const recoveryRatio = ((recovered / cases) * 100).toFixed(2)
             resolve([cases, deaths, deathRatio])
         })
     }
@@ -80,7 +64,6 @@
     function updateDom(values) {
         casesDisplay.innerText = values[0].toLocaleString()
         deathsDisplay.innerHTML = `${values[1].toLocaleString()}<br><small class="text-muted">${values[2]}%</small>`
-        // recoveredDisplay.innerHTML = `${values[2].toLocaleString()}<br><small class="text-muted">${values[4]}%</small>`
         utimestampDisplay.innerHTML = `<small>Updated ${updateTimestamp}</small>`
     }
 
