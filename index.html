@@ -47,15 +47,17 @@
     const utimestampDisplay = document.getElementById('utimestamp')
     const dataSourceDisplay = document.getElementById('data-source')
 
-    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/data/timeseries/NYT-World.json`
+    const dataSource = `https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/${nytBuildHash}/data/timeseries/en/NYT-World.json`
     dataSourceDisplay.setAttribute('href', dataSource)
 
-    function countTotals(data) {
+    function countTotals(json) {
         return new Promise(resolve => {
-            const nytall = data.data
-                .filter(d => d.geoid === 'NYT-World')[0]
-            const cases = nytall.all_cases.slice(-1)[0]
-            const deaths = nytall.all_deaths.slice(-1)[0]
+            let cases = 0
+            let deaths = 0
+            json.data.forEach(d => {
+                cases += d.latest.cases
+                deaths += d.latest.deaths
+            })    
             const deathRatio = ((deaths / cases) * 100).toFixed(2)
             resolve([cases, deaths, deathRatio])
         })
