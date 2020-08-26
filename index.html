@@ -54,10 +54,14 @@
         return new Promise(resolve => {
             let cases = 0
             let deaths = 0
+            let countries = {}
             json.data.forEach(d => {
-                cases += d.latest.cases
-                deaths += d.latest.deaths
-            })    
+                if (!countries[d.geoid]) {
+                    cases += d.latest.cases
+                    deaths += d.latest.deaths
+                    countries[d.geoid] = true
+                }
+            })
             const deathRatio = ((deaths / cases) * 100).toFixed(2)
             resolve([cases, deaths, deathRatio])
         })
