@@ -54,16 +54,15 @@
         return new Promise(resolve => {
             let cases = 0
             let deaths = 0
-            let countries = {}
+            
             json.data.forEach(d => {
-                if (!countries[d.geoid]) {
-                    cases += d.latest.cases
-                    deaths += d.latest.deaths
-                    countries[d.geoid] = true
-                }
+                cases += d.cases.slice(-1)[0] / 2
+                deaths += d.deaths.slice(-1)[0] / 2
             })
-            const deathRatio = ((deaths / cases) * 100).toFixed(2)
-            resolve([cases, deaths, deathRatio])
+
+            console.log(cases)
+            console.log(deaths)
+            resolve([cases, deaths, ((deaths / cases) * 100).toFixed(2)])
         })
     }
 
@@ -74,7 +73,8 @@
     }
 
     function updateData() {
-        fetch(dataSource).then(response => response.json())
+        fetch(dataSource)
+            .then(response => response.json())
             .then(countTotals)
             .then(updateDom)
     }
