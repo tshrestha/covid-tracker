@@ -1,3 +1,3 @@
-// Generated 9/9/2020, 7:47:50 AM
-window.updateTimestamp = '9/9/2020, 7:47:50 AM'
+// Generated 9/9/2020, 8:16:18 AM
+window.updateTimestamp = '9/9/2020, 8:16:18 AM'
 window.nytBuildHash = 'f524c310078e698fa7711474553092d65f5a5d85'
