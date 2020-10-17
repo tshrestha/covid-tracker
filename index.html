@@ -52,16 +52,8 @@
 
     function countTotals(json) {
         return new Promise(resolve => {
-            let cases = 0
-            let deaths = 0
-            
-            json.data.forEach(d => {
-                cases += d.cases.slice(-1)[0] / 2
-                deaths += d.deaths.slice(-1)[0] / 2
-            })
-
-            console.log(cases)
-            console.log(deaths)
+            const data = json.data.filter(d => d.geoid === 'NYT-World')[0]
+            const { cases, deaths } = data.latest
             resolve([cases, deaths, ((deaths / cases) * 100).toFixed(2)])
         })
     }
