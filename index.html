@@ -28,6 +28,7 @@
     <div class="card text-white bg-dark shadow text-center">
         <div class="card-body">
             <h1 class="card-title display-1" id="deaths">number</h1>
+            <h1 class="card-subtitle display-2 text-muted" id="death-rate"></h3>
         </div>
         <div class="card-footer text-muted">Deaths</div>
     </div>
@@ -37,13 +38,14 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" target="_blank" href="" id="data-source">Data source</a>
         </div>
-        <span class="navbar-text text-muted" id="utimestamp"></span>
+        <span class="navbar-text text-muted"><small id="utimestamp"></small></span>
     </nav>
 </div>
 <script src="hash.js"></script>
 <script>
     const casesDisplay = document.getElementById('cases')
     const deathsDisplay = document.getElementById('deaths')
+    const deathrateDisplay = document.getElementById('death-rate')
     const utimestampDisplay = document.getElementById('utimestamp')
     const dataSourceDisplay = document.getElementById('data-source')
 
@@ -60,8 +62,9 @@
 
     function updateDom(values) {
         casesDisplay.innerText = values[0].toLocaleString()
-        deathsDisplay.innerHTML = `${values[1].toLocaleString()}<br><small class="text-muted">${values[2]}%</small>`
-        utimestampDisplay.innerHTML = `<small>Updated ${updateTimestamp}</small>`
+        deathsDisplay.innerHTML = values[1].toLocaleString()
+        deathrateDisplay.innerText = `${values[2]}%`
+        utimestampDisplay.innerText = `Updated ${updateTimestamp}`
     }
 
     function updateData() {
