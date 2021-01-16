@@ -1,3 +1,3 @@
-// Generated 1/16/2021, 2:35:12 PM
-window.updateTimestamp = '1/16/2021, 2:35:12 PM'
-window.nytBuildHash = '025deb13847c5a95f1e18984cfc18556fcd3fb75'
+// Generated 1/16/2021, 3:20:06 PM
+window.updateTimestamp = '1/16/2021, 3:20:06 PM'
+window.nytBuildHash = '6c1daa0dd34e86318fc17e6f7c81328d14217140'
